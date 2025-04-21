@@ -68,10 +68,39 @@ export default function Matrix() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
+          style={{ maxWidth: "600px", marginBottom: "1rem" }}
+        >
+          Alguien te dejó este mensaje cifrado:
+        </motion.p>
+
+        <motion.pre
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          style={{
+            backgroundColor: "#000",
+            color: "#0f0",
+            padding: "15px",
+            border: "2px solid #0f0",
+            fontSize: "1rem",
+            fontFamily: "monospace",
+            textAlign: "center",
+            boxShadow: "0 0 20px #0f0",
+            maxWidth: "600px",
+            margin: "20px auto",
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word"
+          }}
+        >
+          VGhlIHJlYWwgcXVlc3Rpb24gaXMgTm90OiB3aG8gaXMgTmVvPyBCdXQgd2hhdCBpcyBUaGUgTWF0cml4Pw==
+        </motion.pre>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
           style={{ maxWidth: "600px", marginBottom: "2rem" }}
         >
-          Alguien te dejó este mensaje cifrado:<br /><br />
-          <strong>VGhlIHJlYWwgcXVlc3Rpb24gaXMgTm90OiB3aG8gaXMgTmVvPyBCdXQgd2hhdCBpcyBUaGUgTWF0cml4Pw==</strong><br /><br />
           Descifra el mensaje. Cuando tengas la respuesta, usa el botón de abajo para introducirla.
         </motion.p>
 
