@@ -25,7 +25,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         style={{ fontSize: "3rem", marginBottom: "1rem", textShadow: "0 0 15px #00ffcc" }}
       >
-        Bienvenido a La Búsqueda
+        Bienvenido a La Búsqueda 
       </motion.h1>
 
       <motion.p
