@@ -1,20 +1,33 @@
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [codigo, setCodigo] = useState("");
+  const [desbloqueado, setDesbloqueado] = useState(false);
+  const [mostrarInput, setMostrarInput] = useState(false);
+  const [mensaje, setMensaje] = useState("");
+
+  const handleVerificar = () => {
+    if (codigo.trim().toLowerCase() === "thereisnospoon") {
+      setDesbloqueado(true);
+      setMensaje("✔ Reto desbloqueado");
+    } else {
+      setMensaje("❌ Código incorrecto");
+    }
+  };
+
   return (
     <div
       style={{
-        backgroundImage: "linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1549887534-213a62f20358?fit=crop&w=1950&q=80')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundColor: "#111",
+        color: "#00ffcc",
+        fontFamily: "'Orbitron', sans-serif",
         height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        color: "#00ffcc",
-        fontFamily: "'Orbitron', sans-serif",
         textAlign: "center",
         padding: "0 20px"
       }}
@@ -25,7 +38,7 @@ export default function Home() {
         transition={{ duration: 1 }}
         style={{ fontSize: "3rem", marginBottom: "1rem", textShadow: "0 0 15px #00ffcc" }}
       >
-        Bienvenido a La Búsqueda 
+        Bienvenido a La Búsqueda
       </motion.h1>
 
       <motion.p
@@ -41,7 +54,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        style={{ display: "flex", gap: "20px" }}
+        style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}
       >
         <Link href="/registro">
           <button
@@ -59,23 +72,76 @@ export default function Home() {
             Registro
           </button>
         </Link>
-        <Link href="/matrix">
+
+        {desbloqueado ? (
+          <Link href="/matrix">
+            <button
+              style={{
+                padding: "12px 24px",
+                backgroundColor: "#111",
+                border: "2px solid #00ffcc",
+                color: "#00ffcc",
+                fontSize: "1rem",
+                cursor: "pointer",
+                borderRadius: "8px"
+              }}
+            >
+              Ir al reto Matrix
+            </button>
+          </Link>
+        ) : (
           <button
+            onClick={() => setMostrarInput(!mostrarInput)}
             style={{
               padding: "12px 24px",
               backgroundColor: "#111",
-              border: "2px solid #00ffcc",
+              border: "2px dashed #00ffcc",
               color: "#00ffcc",
               fontSize: "1rem",
               cursor: "pointer",
-              borderRadius: "8px",
-              transition: "all 0.3s ease"
+              borderRadius: "8px"
             }}
           >
-            Ir al reto Matrix
+            Desbloquear reto Matrix
           </button>
-        </Link>
+        )}
       </motion.div>
+
+      {mostrarInput && !desbloqueado && (
+        <div style={{ marginTop: "20px" }}>
+          <input
+            type="text"
+            placeholder="Introduce el código secreto..."
+            value={codigo}
+            onChange={(e) => setCodigo(e.target.value)}
+            style={{
+              padding: "10px",
+              width: "250px",
+              borderRadius: "6px",
+              border: "1px solid #00ffcc",
+              backgroundColor: "#000",
+              color: "#0ff",
+              textAlign: "center",
+              marginBottom: "10px"
+            }}
+          />
+          <br />
+          <button
+            onClick={handleVerificar}
+            style={{
+              padding: "10px 20px",
+              border: "none",
+              backgroundColor: "#00ffcc",
+              color: "#000",
+              borderRadius: "6px",
+              cursor: "pointer"
+            }}
+          >
+            Verificar
+          </button>
+          {mensaje && <p style={{ marginTop: "10px" }}>{mensaje}</p>}
+        </div>
+      )}
     </div>
   );
 }
