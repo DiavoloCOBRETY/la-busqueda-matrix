@@ -104,7 +104,7 @@ export default function Matrix() {
           Descifra el mensaje. Cuando tengas la respuesta, usa el botón de abajo para introducirla.
         </motion.p>
 
-        <Link href="/respuesta">
+        <Link href="/matrix/introducir">
           <button
             style={{
               padding: "12px 24px",
